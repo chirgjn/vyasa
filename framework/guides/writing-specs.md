@@ -81,7 +81,7 @@ doc and relevant ADRs.]
 ## [Section]
 
 Exhaustive coverage of one aspect. Every case. Every constraint. Every value that matters.
-No "see the code" — if something is specified, it lives here.
+No "see the code" for contracts — if a field, error code, or invariant is specified, it lives here, not scattered across source files.
 
 ...
 ```
@@ -91,11 +91,23 @@ is sufficient and does not make the spec look historical when it's still live.
 
 ---
 
+## What belongs in a spec
+
+Apply the three content-quality questions from `framework/guides/writing-reference-docs.md`
+§ "What belongs in a doc" — ratio test, preserve the why, mistake prevention. For specs
+specifically: the ratio test applies to implementation detail (JSON blocks mirroring model
+definitions, config tables mirroring a single file); it does not apply to API contracts,
+error-code tables, or cross-file behaviour where the doc is the only consolidated view.
+
+---
+
 ## Writing a spec
 
-**Cover everything.** A spec has failed if a reader must look somewhere else to answer a
-question about the topic. If a detail lives only in code or in someone's head, it belongs
-in the spec.
+**Cover everything that matters.** A spec has failed if a reader must look somewhere else
+to answer a question about the topic. If a detail lives only in code or in someone's head,
+it belongs in the spec. "Cover everything" applies to contract content — field names, valid
+values, HTTP codes, error behaviour, sequencing, invariants — not to implementation detail
+that a reader can recover in seconds by opening one file. See "What belongs in a spec" above.
 
 **Present tense throughout.** "Orchestrators process documents in fixed-size batches" — not
 "orchestrators will process" or "orchestrators should process." A spec states facts, not
@@ -146,4 +158,5 @@ update `docs/specs/index.md`.
 | Spec says "should" or "will" instead of present tense | Rewrite as current fact; if it's not yet true, the spec status should be Proposed or Accepted, not Live |
 | Architecture doc inlines spec-level detail            | Move the detail to a spec; replace with a link                                                          |
 | Spec duplicates ADR rationale                         | Replace with a link to the ADR                                                                          |
+| Spec mirrors code verbatim (JSON blocks, config tables, code examples) | Replace with field names inline or a one-line reference; keep only what would take real effort to recover from code |
 | Status not updated after plan completes               | Move spec to `docs/specs/live/` and update index in the same commit as plan archival                    |

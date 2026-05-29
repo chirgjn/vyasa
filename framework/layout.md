@@ -19,6 +19,7 @@ framework/
     writing-specs.md                 — how to write exhaustive authoritative specs; lifecycle and status
     writing-design-docs.md           — how to write design docs; approval, extraction, archival
     writing-layout-md.md             — how to write layout.md files for directories
+    writing-pr-notes.md              — how to write PR change notes; when to write one, format, naming
     writing-prose-style.md           — voice, table formatting, list structure, sentence quality
     diagrams.md                      — when to use diagrams, what type, how to keep them accurate
     mermaid.md                       — Mermaid syntax guide for this project

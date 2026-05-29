@@ -163,9 +163,10 @@ Artifacts useful during execution, near-zero value after. Create freely — the 
 
 | Subcategory        | What it contains                                                                 | Where it goes                                                  |
 | ------------------ | -------------------------------------------------------------------------------- | -------------------------------------------------------------- |
-| **Plans**          | Execution checklists for bounded changes — reference the spec, track file status | `docs/plans/` while active, `docs/archive/plans/` after        |
+| **Plans**          | Execution checklists for bounded changes — reference the spec, track file status. The plan document itself is ephemeral (archived after completion); the changes it tracks are not. Not to be confused with long-term roadmaps, which are reference docs (`docs/`) | `docs/plans/` while active, `docs/archive/plans/` after        |
 | **Execution logs** | Status trackers, progress updates                                                | `docs/archive/` or delete                                      |
-| **PR artifacts**   | Review comments, fix logs, round-by-round feedback                               | PR comments or `docs/archive/pr-reviews/`                      |
+| **PR change notes** | Per-change explanations of decisions and constraints for non-trivial PRs — written for reviewers evaluating whether each decision was sound. One section per logical change: **What** (one sentence) + **Why** (motivation, rejected alternatives, constraints). Describes the final state of each decision, not the iteration history or execution order. | `docs/archive/pr-reviews/pr-<number>-changes.md` |
+| **Review artifacts** | Review comments, fix logs, round-by-round feedback | PR comments or `docs/archive/pr-reviews/pr-<number>-<type>-r<round>.md` for iterative loops (e.g. `pr-37-review-r1.md`, `pr-37-fixes-r1.md`) |
 | **Spike results**  | Exploration notes, prototype findings                                            | `docs/archive/` or inline in the decision record they informed |
 
 **When archiving a plan:** write or verify an ADR exists for any non-obvious decisions made
@@ -186,7 +187,8 @@ Needed on EVERY task?
    ├─ High-level system structure, links to specs for detail? → docs/architecture/
    ├─ Exhaustive authoritative description of how something works? → docs/specs/
    ├─ Pre-approval problem + alternatives + recommendation for an overarching goal? → docs/designs/
-   ├─ Execution checklist for a bounded change? → docs/plans/ → docs/archive/plans/ after
+   ├─ Execution checklist for a bounded change (plan itself is ephemeral)? → docs/plans/ → docs/archive/plans/ after
+   ├─ Long-term product or technical roadmap? → docs/ (reference doc, lives indefinitely)
    ├─ Irrelevant after merge? → docs/archive/
    └─ Module-specific? → src/<module>/AGENTS.md
 ```
@@ -250,7 +252,7 @@ project-root/
 │   └── archive/                     # Post-merge artifacts
 │       ├── designs/                 # Deprecated or rejected designs
 │       ├── plans/
-│       └── pr-reviews/
+│       └── pr-reviews/          # pr-<number>-changes.md; pr-<number>-<type>-r<round>.md for review loops
 └── src/
     └── orders/AGENTS.md             # (optional) Module-specific conventions
 ```
@@ -316,7 +318,7 @@ Writing guides for each doc type and topic. Use the placement decision tree abov
 | Writing or auditing `AGENTS.md` — what belongs, sizing, routing table, subdirectory files          | `framework/guides/writing-agents-md.md`         |
 | Creating or reviewing a `layout.md` — format, Contents section, sub-project traversal              | `framework/guides/writing-layout-md.md`         |
 | Writing or reviewing a convention — when to add one, phrasing, what to delete                      | `framework/guides/writing-conventions.md`       |
-| Creating a new doc or tutorial — when to create vs. extend, structure, sizing                      | `framework/guides/writing-reference-docs.md`    |
+| Creating a new doc or tutorial, or deciding what belongs in any section — when to create vs. extend, structure, sizing, ratio test, preserving the why | `framework/guides/writing-reference-docs.md`    |
 | Writing an ADR or extracting decisions from a design or plan                                       | `framework/guides/writing-decision-records.md`  |
 | Writing or updating an architecture doc — system view, components, constraints                     | `framework/guides/writing-architecture-docs.md` |
 | Writing or updating a spec — exhaustive authoritative description of how something works           | `framework/guides/writing-specs.md`             |
@@ -325,4 +327,5 @@ Writing guides for each doc type and topic. Use the placement decision tree abov
 | Writing prose — voice, table formatting, list structure, sentence quality                          | `framework/guides/writing-prose-style.md`       |
 | Setting up or auditing documentation maintenance — update triggers, enforcement, checklists        | `framework/guides/maintenance.md`               |
 | Checking docs for staleness — script paths, commands, conventions, diagrams                        | `framework/guides/staleness.md`                 |
+| Writing PR change notes — what to include, structure, when to write one                            | `framework/guides/writing-pr-notes.md`          |
 | Finding and fixing documentation problems — misplacement, discoverability, duplication             | `auditing-anti-patterns.md`                     |

@@ -55,6 +55,7 @@ docs/
   plans/                         — active implementation plans (archive to docs/archive/plans/ after merge)
   archive/
     plans/                       — completed implementation plans
+    pr-reviews/                  — PR artifacts: change summaries, review comments, fix logs (pr-<number>-<type>.md or pr-<number>-<type>-r<round>.md)
 ```
 
 ## What Lives Here

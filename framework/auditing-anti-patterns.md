@@ -548,6 +548,7 @@ Look for these duplication patterns:
 1. **Same "what is this project"** explanation in README, onboarding doc, and quickstart
 1. **Same convention** phrased differently in `AGENTS.md` and a guide
 1. **`AGENTS.md` duplicating global config** — tool-generic rules that also live in agent-specific global config
+1. **Doc mirroring code** — JSON blocks, config tables, or code examples that are verbatim copies of a single source file
 
 Use `framework/tools/find-word-contexts.sh` to surface candidates. Pass the docs directory and the terms you want to trace — it returns every occurrence with file and line number:
 
@@ -578,6 +579,8 @@ Is it under 3 lines (a command, a path, a one-liner)?
 **Examples of acceptable repetition:** A one-line test command in both `AGENTS.md` and `docs/testing.md`. A file path repeated in a routing table and the doc it routes to.
 
 **Examples of harmful duplication:** A 10-line explanation of the project purpose in three different files. The same convention written in slightly different words in `AGENTS.md` and a guide. Setup instructions split across README and `docs/setup.md` with each having pieces the other lacks.
+
+**Code-mirroring** is a specific form of harmful duplication: a spec or reference doc that contains JSON blocks, config key tables, or code examples copied verbatim from a single source file. The test: if a reader could open one file and recover the information in under two minutes, the doc is mirroring code, not adding value. Fix by replacing the block with field names inline or a one-line reference to the source file. Exception: keep the content if it encodes a non-obvious contract, cross-file relationship, or "why" that isn't recoverable from the code itself.
 
 **Note:** Grepping catches path and command duplication, but content duplication — the same concept explained in different words — requires reading docs side by side. Focus on doc pairs that cover related topics (setup/deployment, onboarding/quickstart, conventions in `AGENTS.md` vs. the guide they link to).
 
@@ -720,6 +723,7 @@ A condensed version for quick reference. Check each item; fix before moving to t
 - [ ] No duplicate explanations of the same concept across files
 - [ ] No content over 3 lines repeated in multiple files without a canonical home
 - [ ] `AGENTS.md` doesn't duplicate global config rules
+- [ ] No code-mirroring: specs and reference docs don't contain JSON blocks, config tables, or code examples that are verbatim copies of a single source file
 
 ### Section quality (§9)
 

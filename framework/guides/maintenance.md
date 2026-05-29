@@ -74,7 +74,7 @@ For the five staleness types, detection methods, and stale signals, see
 1. Create `docs/designs/` for active design docs
 1. Create `docs/specs/` with `index.md`, `live/`, and `in-progress/` subdirectories
 1. Create `docs/plans/` with `index.md` for active execution plans
-1. Create `docs/archive/` with `designs/`, `plans/`, and `specs/` subdirectories
+1. Create `docs/archive/` with `designs/`, `plans/`, `specs/`, and `pr-reviews/` subdirectories
 1. Create `docs/maintenance.md` with update triggers
 1. Configure linters for style rules — don't write them in docs
 1. Set up hooks for auto-formatting
